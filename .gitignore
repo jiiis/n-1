@@ -1,0 +1,16 @@
+# Package managers #
+####################
+node_modules
+bower_components
+
+# Logs #
+########
+*.log
+
+# OS generated #
+################
+.DS_Store
+
+# IDE #
+#######
+.idea
