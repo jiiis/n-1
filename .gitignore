@@ -1,7 +1,15 @@
 # Package managers #
 ####################
 node_modules
-bower_components
+
+# Vendors #
+###########
+app/assets/vendors/bower
+
+# Distributions #
+#################
+app/assets/styles/dist
+app/assets/scripts/dist
 
 # Logs #
 ########
