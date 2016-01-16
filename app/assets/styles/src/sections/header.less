@@ -9,7 +9,7 @@
     padding: 0 @ch-util__mardding_small;
     height: @ch__height_header-top;
     line-height: @ch__height_header-top;
-    background: @ch__background_header-top;
+    background: @ch-util__color_gray-lighter;
 
     &-left, &-right {
       position: absolute;
@@ -39,7 +39,7 @@
         margin-left: 0;
         height: @ch__height_header-top - @ch-util__mardding_smaller * 2;
         line-height: @ch__height_header-top - @ch-util__mardding_smaller * 2;
-        font-size: @ch__font-size_header-top-icon;
+        font-size: @ch-util__font-size_30;
 
         .fa {
           .ch-util__cursor_pointer;
@@ -73,7 +73,7 @@
   &__bottom {
     padding: @ch-util__mardding_larger;
     border-top: @ch__border_base;
-    background: @ch__background_header-bottom;
+    background: @ch-util__color_white;
 
     &-menu {
       .ch-util__flex-container(@ch-util__mardding_larger);
@@ -85,17 +85,17 @@
         .ch-util__flex-item_grow-1;
 
         &-icon {
-          font-size: @ch__font-size_header-bottom-icon;
+          font-size: @ch-util__font-size_30;
         }
 
         &-count {
           margin: 0 0 0 @ch-util__mardding_small;
-          font-size: @ch__font-size_header-bottom-count;
+          font-size: @ch-util__font-size_30;
         }
 
         &-text {
           margin: 0 0 0 @ch-util__mardding_smaller;
-          font-size: @ch__font-size_header-bottom-text;
+          font-size: @ch-util__font-size_18;
         }
       }
     }
@@ -118,7 +118,7 @@
         border-radius: @ch-util__border-radius_small;
         color: @ch-util__color_white;
         background: @ch-util__color_blue;
-        font-size: @ch__font-size_header-bottom-button;
+        font-size: @ch-util__font-size_16;
         font-weight: @ch-util__font-weight_boldest;
         box-shadow: @ch-util__box-shadow_light;
 
@@ -131,13 +131,13 @@
           position: absolute;
           left: @ch-util__mardding_small;
           line-height: inherit;
-          font-size: @ch__font-size_header-bottom-icon;
+          font-size: @ch-util__font-size_30;
         }
 
         & > span {
           display: inline-block;
           margin: 0 0 0 @ch__height_header-action;
-          width: ~"calc(100% - @{ch__height_header-action})";
+          width: ~'calc(100% - @{ch__height_header-action})';
         }
       }
     }

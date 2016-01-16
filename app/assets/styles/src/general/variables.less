@@ -1,4 +1,4 @@
-/******************** mardding ********************/
+/******************** path ********************/
 @ch-util__path_bower: '../../vendors/bower';
 
 /******************** mardding ********************/
@@ -6,13 +6,21 @@
 @ch-util__mardding_small: 12px;
 @ch-util__mardding_large: 18px;
 @ch-util__mardding_larger: 24px;
+@ch-util__mardding_largest: 30px;
+
+/******************** size ********************/
+@ch__size_timeline-item-point: 24px;
 
 /******************** width ********************/
 @ch__width_main: 720px;
+@ch__width_timeline-icon: 30px;
+@ch__width_timeline-image: 90px;
 
 /******************** height ********************/
 @ch__height_header-top: 48px;
 @ch__height_header-action: 42px;
+@ch__height_timeline-item-title: 36px;
+@ch__height_timeline-item-row: 36px;
 
 /******************** color ********************/
 @ch-util__color_white: #fff;
@@ -20,6 +28,7 @@
 @ch-util__color_gray-lighter: #e7e8e9;
 @ch-util__color_gray-light: #dedede;
 @ch-util__color_gray: #aaabb3;
+@ch-util__color_gray-dark: #939598;
 @ch-util__color_gray-darker: #6f7380;
 @ch-util__color_gray-darkest: #222;
 @ch-util__color_black: #000;
@@ -29,17 +38,15 @@
 @ch-util__color_navy: #4c5565;
 
 @ch__color_base: @ch-util__color_gray-darkest;
-@ch__color_link: @ch__color_base;
-@ch__color_link-hover: @ch__color_base;
+@ch__color_link: @ch-util__color_gray-dark;
+@ch__color_link-hover: @ch__color_link;
 
 /******************** background ********************/
 @ch__background_base: @ch-util__color_gray-light;
 @ch__background_main: @ch-util__color_gray-lightest;
-@ch__background_header-top: @ch-util__color_gray-lighter;
-@ch__background_header-bottom: @ch-util__color_white;
 
 /******************** border ********************/
-@ch__border_base: 1px solid @ch-util__color_gray-light;
+@ch__border_base: 2px solid @ch-util__color_gray-light;
 
 /******************** border ********************/
 @ch-util__border-radius_small: 3px;
@@ -49,12 +56,13 @@
 @ch__font-family_base: Roboto;
 
 /******************** font-size ********************/
+@ch-util__font-size_16: 16px;
+@ch-util__font-size_18: 18px;
+@ch-util__font-size_30: 30px;
+@ch-util__font-size_36: 36px;
+@ch-util__font-size_42: 42px;
+
 @ch__font-size_base: 13px;
-@ch__font-size_header-top-icon: 30px;
-@ch__font-size_header-bottom-icon: 30px;
-@ch__font-size_header-bottom-count: 30px;
-@ch__font-size_header-bottom-text: 18px;
-@ch__font-size_header-bottom-button: 16px;
 
 /******************** font-weight ********************/
 @ch-util__font-weight_boldest: 700;

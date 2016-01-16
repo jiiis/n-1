@@ -31,6 +31,13 @@
   }
 }
 
+/******************** list ********************/
+.ch-util__list_unstyled {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
 /******************** text ********************/
 .ch-util__text-overflow {
   overflow: hidden;
@@ -45,4 +52,16 @@
 
 .ch-util__cursor_not-allowed {
   cursor: not-allowed;
+}
+
+/******************** clearfix ********************/
+.ch-util__clearfix {
+  &:before, &:after {
+    content: ' ';
+    display: table;
+  }
+
+  &:after {
+    clear: both;
+  }
 }
