@@ -1,0 +1,48 @@
+/******************** display ********************/
+.ch-util__block_text-center {
+  height: 100%;
+  line-height: inherit;
+  text-align: center;
+}
+
+/******************** flex ********************/
+.ch-util__flex-container(@gutter: @ch-util__mardding_smaller) {
+  display: flex;
+  margin-left: -@gutter;
+  margin-right: -@gutter;
+
+  .ch-util__flex-item {
+    margin-left: @gutter;
+    margin-right: @gutter;
+
+    .ch-util__text-overflow;
+  }
+
+  .ch-util__flex-item_grow-1 {
+    .ch-util__flex-item;
+
+    flex-grow: 1;
+  }
+
+  .ch-util__flex-item_grow-2 {
+    .ch-util__flex-item;
+
+    flex-grow: 2;
+  }
+}
+
+/******************** text ********************/
+.ch-util__text-overflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/******************** cursor ********************/
+.ch-util__cursor_pointer {
+  cursor: pointer;
+}
+
+.ch-util__cursor_not-allowed {
+  cursor: not-allowed;
+}

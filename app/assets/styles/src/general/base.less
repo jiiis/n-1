@@ -1,0 +1,43 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+
+  &:before, &:after {
+    box-sizing: border-box;
+  }
+}
+
+html {
+  min-height: 100vh;
+}
+
+body {
+  position: relative;
+  margin: 0;
+  min-height: 100vh;
+  color: @ch__color_base;
+  background: @ch__background_base;
+  font-family: @ch__font-family_base;
+  font-size: @ch__font-size_base;
+  font-weight: @ch__font-weight_base;
+}
+
+a {
+  color: @ch__color_link;
+  text-decoration: none;
+
+  &:hover, &:focus {
+    color: @ch__color_link-hover;
+  }
+}
+
+button {
+  .ch-util__text-overflow;
+  .ch-util__cursor_pointer;
+
+  &:disabled {
+    .ch-util__cursor_not-allowed;
+  }
+}
