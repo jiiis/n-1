@@ -107,6 +107,8 @@
     }
 
     &-action {
+      overflow: visible !important;
+
       &-button {
         position: relative;
         width: 100%;
@@ -118,9 +120,11 @@
         background: @ch-util__color_blue;
         font-size: @ch__font-size_header-bottom-button;
         font-weight: @ch-util__font-weight_boldest;
+        box-shadow: @ch-util__box-shadow_light;
 
         &:disabled {
           background: @ch-util__color_gray;
+          box-shadow: none;
         }
 
         .fa {
