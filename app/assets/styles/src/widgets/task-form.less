@@ -64,10 +64,10 @@
       margin: 0 @ch-util__mardding_small 0 0;
     }
 
-    &#task-form-submit-button {
+    &.ch-button_submit {
       color: @ch-util__color_white;
       background: @ch-util__color_green;
-      font-weight: @ch-util__font-weight_boldest;
+      font-weight: @ch-util__font-weight_bolder;
     }
   }
 }
@@ -96,6 +96,10 @@
 
   &:read-only {
     color: @ch-util__color_gray-darker;
+  }
+
+  &.ng-touched.ng-invalid {
+    border-color: @ch-util__color_red;
   }
 }
 

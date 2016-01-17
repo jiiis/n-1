@@ -19,12 +19,6 @@
                 max: 300
             };
 
-        // for task form
-        var _$taskFromTrigger = $('#add-task-trigger'),
-            _$taskForm = $('#task-form'),
-            _$taskFromSubmit = $('#task-form-submit-button'),
-            _$taskFormClose = $('#task-form-close-button');
-
         /******************** timeline | drag ********************/
         _$timeline.on('mousedown', function(e) {
             // primary button only
@@ -70,15 +64,6 @@
 
             // ensure the timeline doesn't go beyond its container when the height changes
             _adjustTimelinePosition();
-        });
-
-        /******************** task form ********************/
-        _$taskFromTrigger.click(function() {
-            _$taskForm.slideDown(200);
-        });
-
-        _$taskFormClose.click(function() {
-            _$taskForm.slideUp(200);
         });
 
         /******************** private functions ********************/
@@ -134,7 +119,8 @@
     /******************** controllers ********************/
     app.controller('TimelineController', ['$scope', 'Timeline', function($scope, Timeline) {
         /******************** private variables ********************/
-        var dates = {};
+        var _dates = {},
+            _$taskForm = $('#task-form');
 
         /******************** model ********************/
         $scope.dates = [];
@@ -155,6 +141,10 @@
             return item.image !== undefined;
         };
 
+        $scope.isSubmitButtonDisabled = function() {
+            return !$scope.taskForm.$valid;
+        };
+
         // todo: this function is not completely correct
         $scope.getDateTitle = function(date) {
             var dateInt = parseInt(date.dateString),
@@ -167,65 +157,138 @@
         };
 
         // todo: just a mockup for now
-        $scope.getDayOptions = function() {
-            var dayOptions = [];
+        $scope.getTimeOptions = function(domain) {
+            var options = [],
+                start = domain === 'day' ? 1 : 0,
+                volume = domain === 'day' ? 31
+                    : (domain === 'hours' ? 24 : 60);
 
-            for (var i = 1; i <= 31; i++) {
-                dayOptions.push(i);
+            for (var i = start; i <= volume; i++) {
+                options.push({
+                    name: i < 10 ? '0' + i : '' + i,
+                    value: i
+                });
             }
 
-            return dayOptions;
+            return options;
+        };
+
+        $scope.getTaskTypeOptions = function() {
+            return [{
+                name: 'Appointment',
+                value: 'appointment'
+            }, {
+                name: 'Meeting',
+                value: 'meeting'
+            }];
+        };
+
+        $scope.taskYear = 2016;
+        $scope.taskMonth = 1;
+        $scope.taskDay = $scope.getTimeOptions('day')[26];
+        $scope.taskHours = $scope.getTimeOptions('hours')[11];
+        $scope.taskMinutes = $scope.getTimeOptions('minutes')[30];
+        $scope.taskType = $scope.getTaskTypeOptions()[0];
+        $scope.taskTitle = '';
+        $scope.taskDescription = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum maiores ratione tempora? Asperiores beatae dicta ducimus eos error eum impedit minima minus nemo nobis numquam obcaecati, omnis quae, quibusdam repellat.';
+
+        $scope.addTask = function() {
+            var task = {
+                date: {
+                    year: $scope.taskYear,
+                    month: $scope.taskMonth,
+                    day: $scope.taskDay.value,
+                    hours: $scope.taskHours.value,
+                    minutes: $scope.taskMinutes.value,
+                    seconds: 0,
+                    milliseconds: 0
+                },
+                type: $scope.taskType.value,
+                title: $scope.taskTitle,
+                description: $scope.taskDescription,
+                author: 'Hao Change (default)'
+            };
+
+            _addTask(task);
+
+            _updateTaskModel();
+
+            $scope.closeTaskForm();
+        };
+
+        $scope.openTaskForm = function() {
+            _$taskForm.slideDown(200);
+        };
+
+        $scope.closeTaskForm = function() {
+            _$taskForm.slideUp(200);
         };
 
         /******************** event handlers ********************/
         Timeline.query(function(items) {
             angular.forEach(items, function(item) {
-                var itemDate = item.date,
-                    dateLocale = 'en-us',
-                    dateIndex = [itemDate.year, itemDate.month, itemDate.day].join('-'),
-                    dateString = [itemDate.year, itemDate.month, itemDate.day].join(''),
-                    date = new Date(itemDate.year, itemDate.month - 1, itemDate.day, itemDate.hours, itemDate.minutes, itemDate.seconds || 0, itemDate.milliseconds || 0);
-
-                item.date.timestamp = date.getTime();
-                item.date.dayName = getDayName(date.getDay());
-                item.date.monthName = date.toLocaleString(dateLocale, {
-                    month: 'long'
-                });
-
-                if (dateIndex in dates) {
-                    dates[dateIndex].items.push(item);
-                } else {
-                    dates[dateIndex] = {
-                        dateIndex: dateIndex,
-                        dateString: dateString,
-                        items: [item]
-                    };
-                }
+                _addTask(item);
             });
 
-            angular.forEach(dates, function(date) {
+            _updateTaskModel();
+        });
+
+        /******************** private functions ********************/
+        function _addTask(item) {
+            var itemDate = item.date,
+                dateIndex = [itemDate.year, itemDate.month, itemDate.day].join('-'),
+                dateString = [itemDate.year, itemDate.month, itemDate.day].join(''),
+
+                item = _getNormalizedTask(item);
+
+            if (dateIndex in _dates) {
+                _dates[dateIndex].items.push(item);
+            } else {
+                _dates[dateIndex] = {
+                    dateIndex: dateIndex,
+                    dateString: dateString,
+                    items: [item]
+                };
+            }
+        }
+
+        function _updateTaskModel() {
+            angular.forEach(_dates, function(date) {
                 $scope.dates.push(date);
             });
-        });
+        }
+
+        function _getNormalizedTask(item) {
+            var itemDate = item.date,
+                dateLocale = 'en-us',
+                date = new Date(itemDate.year, itemDate.month - 1, itemDate.day, itemDate.hours, itemDate.minutes, itemDate.seconds || 0, itemDate.milliseconds || 0);
+
+            item.date.timestamp = date.getTime();
+            item.date.dayName = _getDayName(date.getDay());
+            item.date.monthName = date.toLocaleString(dateLocale, {
+                month: 'long'
+            });
+
+            return item;
+        }
+
+        function _getDayName(dayNumber) {
+            var dayMap = {
+                0: 'Sunday',
+                1: 'Monday',
+                2: 'Tuesday',
+                3: 'Wednesday',
+                4: 'Thursday',
+                5: 'Friday',
+                6: 'Saturday'
+            };
+
+            return dayMap[dayNumber];
+        }
     }]);
 
     /******************** services ********************/
     app.factory('Timeline', ['$resource', '$q', function($resource) {
         return $resource('model/timeline.json');
     }]);
-
-    /******************** private functions ********************/
-    function getDayName(dayNumber) {
-        var dayMap = {
-            0: 'Sunday',
-            1: 'Monday',
-            2: 'Tuesday',
-            3: 'Wednesday',
-            4: 'Thursday',
-            5: 'Friday',
-            6: 'Saturday'
-        };
-
-        return dayMap[dayNumber];
-    }
 })(window, angular, jQuery);

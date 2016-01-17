@@ -60,7 +60,8 @@
                             <button class="ch-header__bottom-action-button" disabled><i class="fa fa-user"></i><span>O. Prime</span></button>
                         </div>
                         <div class="ch-header__bottom-action ch-util__flex-item_grow-1">
-                            <button id="add-task-trigger" class="ch-header__bottom-action-button"><i class="fa fa-plus"></i><span>Add Task</span></button>
+                            <button class="ch-header__bottom-action-button"
+                                    ng-click="openTaskForm()"><i class="fa fa-plus"></i><span>Add Task</span></button>
                         </div>
                     </div>
                 </div>
@@ -70,7 +71,7 @@
             <div id="timeline-container" class="ch-timeline-container">
                 <div id="timeline" class="ch-timeline">
                     <div class="ch-timeline__day"
-                            ng-repeat="date in dates | orderBy:'dateString':true"
+                            ng-repeat="date in dates | orderBy:'dateString':true track by $index"
                             ng-class="{'ch-util__active': isDateActive(date)}">
                         <div class="ch-timeline__day-title">
                             <span class="ch-timeline__day-title-text"
@@ -78,7 +79,7 @@
                         </div>
                         <div class="ch-timeline__day-block">
                             <ul class="ch-timeline__list">
-                                <li ng-repeat="item in date.items | orderBy:'date.timestamp':true"
+                                <li ng-repeat="item in date.items | orderBy:'date.timestamp':true track by $index"
                                         ng-class="$even ? 'ch-timeline__item' : 'ch-timeline__item_inverted'">
                                     <div class="ch-timeline__item-point"></div>
                                     <div class="ch-timeline__item-title">
@@ -137,48 +138,72 @@
             </div>
             <hr class="ch-task-form__divider">
             <div class="ch-form-container">
-                <form class="ch-form">
+                <form class="ch-form" name="taskForm" novalidate>
                     <div class="ch-form__row">
                         <div class="ch-form__field">
                             <label for="task-field-year" class="ch-form__label">Year</label>
-                            <input type="text" id="task-field-year" class="ch-form__input" name="year" value="2016  (read only)" readonly>
+                            <input type="text" id="task-field-year" class="ch-form__input" name="year" readonly
+                                    ng-model="taskYear">
                         </div>
                         <div class="ch-form__field">
                             <label for="task-field-month" class="ch-form__label">Month</label>
-                            <input type="text" id="task-field-month" class="ch-form__input" name="month" value="1  (read only)" readonly>
+                            <input type="text" id="task-field-month" class="ch-form__input" name="month" readonly
+                                   ng-model="taskMonth">
                         </div>
                         <div class="ch-form__field">
                             <label for="task-field-day" class="ch-form__label">Day</label>
-                            <select id="task-field-day" class="ch-form__input" name="day">
-                                <option value="dayOption"
-                                        ng-repeat="dayOption in getDayOptions()"
-                                        ng-bind="dayOption"></option>
+                            <select id="task-field-day" class="ch-form__input" name="day"
+                                    ng-model="taskDay"
+                                    ng-options="option.name for option in getTimeOptions('day') track by option.value">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="ch-form__row">
+                        <div class="ch-form__field">
+                            <label for="task-field-hours" class="ch-form__label">Hours</label>
+                            <select id="task-field-hours" class="ch-form__input" name="hours"
+                                    ng-model="taskHours"
+                                    ng-options="option.name for option in getTimeOptions('hours') track by option.value">
+                            </select>
+                        </div>
+                        <div class="ch-form__field">
+                            <label for="task-field-minutes" class="ch-form__label">Minutes</label>
+                            <select id="task-field-minutes" class="ch-form__input" name="minutes"
+                                    ng-model="taskMinutes"
+                                    ng-options="option.name for option in getTimeOptions('minutes') track by option.value">
                             </select>
                         </div>
                     </div>
                     <div class="ch-form__row">
                         <div class="ch-form__field">
                             <label for="task-field-type" class="ch-form__label">Type</label>
-                            <select id="task-field-type" class="ch-form__input" name="type">
-                                <option value="Appointment">Appointment</option>
-                                <option value="Meeting">Meeting</option>
+                            <select id="task-field-type" class="ch-form__input" name="type"
+                                    ng-model="taskType"
+                                    ng-options="option.name for option in getTaskTypeOptions() track by option.value">
                             </select>
                         </div>
                         <div class="ch-form__field">
-                            <label for="task-field-title" class="ch-form__label">Title</label>
-                            <input type="text" id="task-field-title" class="ch-form__input" name="title">
+                            <label for="task-field-title" class="ch-form__label">Title (required and shorter than 12)</label>
+                            <input type="text" id="task-field-title" class="ch-form__input" name="title"
+                                   ng-model="taskTitle"
+                                   ng-required="true"
+                                   ng-maxlength="12">
                         </div>
                     </div>
                     <div class="ch-form__row">
                         <div class="ch-form__field">
                             <label for="task-field-description" class="ch-form__label">Description</label>
-                            <textarea id="task-field-description" class="ch-form__input_textarea" name="description" readonly>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum maiores ratione tempora? Asperiores beatae dicta ducimus eos error eum impedit minima minus nemo nobis numquam obcaecati, omnis quae, quibusdam repellat (read only)</textarea>
+                            <textarea id="task-field-description" class="ch-form__input_textarea" name="description" readonly
+                                      ng-model="taskDescription"></textarea>
                         </div>
                     </div>
                     <hr class="ch-task-form__divider">
                     <div class="ch-form__row_buttons">
-                        <button id="task-form-submit-button">Submit</button>
-                        <button id="task-form-close-button">Close</button>
+                        <button class="ch-button_submit"
+                                ng-click="addTask()"
+                                ng-disabled="isSubmitButtonDisabled()">Submit</button>
+                        <button type="submit"
+                                ng-click="closeTaskForm()">Close</button>
                     </div>
                 </form>
             </div>

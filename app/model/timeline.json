@@ -9,7 +9,7 @@
       "seconds": 0,
       "milliseconds": 0
     },
-    "type": "Appointment",
+    "type": "appointment",
     "title": "Appointment 2",
     "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias asperiores cupiditate fugiat fugit magni nihil possimus voluptas voluptate? Aliquam animi architecto aut consequuntur distinctio dolorum eos, iste! Delectus excepturi, possimus!",
     "author": "Dick Smith"
@@ -24,7 +24,7 @@
       "seconds": 0,
       "milliseconds": 0
     },
-    "type": "Appointment",
+    "type": "appointment",
     "title": "Appointment 1",
     "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias asperiores cupiditate fugiat fugit magni nihil possimus voluptas voluptate? Aliquam animi architecto aut consequuntur distinctio dolorum eos, iste! Delectus excepturi, possimus!",
     "author": "John Doe"
@@ -39,7 +39,7 @@
       "seconds": 0,
       "milliseconds": 0
     },
-    "type": "Meeting",
+    "type": "meeting",
     "title": "Meeting 1",
     "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias asperiores cupiditate fugiat fugit magni nihil possimus voluptas voluptate? Aliquam animi architecto aut consequuntur distinctio dolorum eos, iste! Delectus excepturi, possimus!",
     "author": "Hao Chang",
@@ -55,7 +55,7 @@
       "seconds": 0,
       "milliseconds": 0
     },
-    "type": "Meeting",
+    "type": "meeting",
     "title": "Meeting 2",
     "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias asperiores cupiditate fugiat fugit magni nihil possimus voluptas voluptate? Aliquam animi architecto aut consequuntur distinctio dolorum eos, iste! Delectus excepturi, possimus!",
     "author": "Owen Prime",
@@ -71,7 +71,7 @@
       "seconds": 0,
       "milliseconds": 0
     },
-    "type": "Meeting",
+    "type": "meeting",
     "title": "Meeting 6",
     "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias asperiores cupiditate fugiat fugit magni nihil possimus voluptas voluptate? Aliquam animi architecto aut consequuntur distinctio dolorum eos, iste! Delectus excepturi, possimus!",
     "author": "Owen Prime",
@@ -87,7 +87,7 @@
       "seconds": 0,
       "milliseconds": 0
     },
-    "type": "Meeting",
+    "type": "meeting",
     "title": "Meeting 3",
     "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias asperiores cupiditate fugiat fugit magni nihil possimus voluptas voluptate? Aliquam animi architecto aut consequuntur distinctio dolorum eos, iste! Delectus excepturi, possimus!",
     "author": "JB HIFI"
@@ -102,7 +102,7 @@
       "seconds": 0,
       "milliseconds": 0
     },
-    "type": "Meeting",
+    "type": "meeting",
     "title": "Meeting 3",
     "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias asperiores cupiditate fugiat fugit magni nihil possimus voluptas voluptate? Aliquam animi architecto aut consequuntur distinctio dolorum eos, iste! Delectus excepturi, possimus!",
     "author": "April Chang"
@@ -117,7 +117,7 @@
       "seconds": 0,
       "milliseconds": 0
     },
-    "type": "Appointment",
+    "type": "appointment",
     "title": "Appointment 6",
     "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias asperiores cupiditate fugiat fugit magni nihil possimus voluptas voluptate? Aliquam animi architecto aut consequuntur distinctio dolorum eos, iste! Delectus excepturi, possimus!",
     "author": "Stephen Curry"
@@ -132,7 +132,7 @@
       "seconds": 0,
       "milliseconds": 0
     },
-    "type": "Appointment",
+    "type": "appointment",
     "title": "Appointment 3",
     "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias asperiores cupiditate fugiat fugit magni nihil possimus voluptas voluptate? Aliquam animi architecto aut consequuntur distinctio dolorum eos, iste! Delectus excepturi, possimus!",
     "author": "Michael Jordan"
@@ -147,7 +147,7 @@
       "seconds": 0,
       "milliseconds": 0
     },
-    "type": "Appointment",
+    "type": "appointment",
     "title": "Appointment 4",
     "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias asperiores cupiditate fugiat fugit magni nihil possimus voluptas voluptate? Aliquam animi architecto aut consequuntur distinctio dolorum eos, iste! Delectus excepturi, possimus!",
     "author": "Kobe Bryant"
