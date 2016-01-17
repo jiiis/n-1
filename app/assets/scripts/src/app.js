@@ -54,10 +54,29 @@
 
     /******************** timeline | zoom ********************/
     $(function() {
-        var _$timeline = $('#timeline');
+        var _gapProperty = 'marginBottom',
+            _gapRange = {
+                min: 0,
+                max: 300
+            },
+            _$timeline = $('#timeline'),
+            _$timelineItem = $('.ch-timeline__item, .ch-timeline__item_inverted');
 
         _$timeline.on('mousewheel', function(e) {
-            console.log(e.deltaX);
+            var delta = e.deltaY,
+                gap = _$timelineItem.cssInt(_gapProperty),
+                gapNew = gap + delta;
+
+            if (gapNew < _gapRange.min || gapNew > _gapRange.max) {
+                return;
+            }
+
+            _$timelineItem.css(_gapProperty, gapNew + 'px');
         });
     });
+
+    /******************** jQuery prototype ********************/
+    $.fn.cssInt = function(property) {
+        return parseInt(this.css(property), 10) || 0;
+    };
 })(window, jQuery);
