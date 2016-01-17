@@ -51,4 +51,13 @@
             _cursorPosition = e.pageY;
         });
     });
+
+    /******************** timeline | zoom ********************/
+    $(function() {
+        var _$timeline = $('#timeline');
+
+        _$timeline.on('mousewheel', function(e) {
+            console.log(e.deltaX);
+        });
+    });
 })(window, jQuery);
