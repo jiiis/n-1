@@ -6,8 +6,7 @@
         // common
         var _$window = $(window),
             _$timelineContainer = $('#timeline-container'),
-            _$timeline = $('#timeline'),
-            _$timelineItem = $('.ch-timeline__item, .ch-timeline__item_inverted');
+            _$timeline = $('#timeline');
 
         // for timeline drag
         var _isCursorDown = false,
@@ -50,7 +49,8 @@
 
         /******************** timeline | zoom ********************/
         _$timeline.on('mousewheel', function(e) {
-            var delta = e.deltaY,
+            var _$timelineItem = $('.ch-timeline__item, .ch-timeline__item_inverted'),
+                delta = e.deltaY,
                 gap = _$timelineItem.cssInt(_gapProperty),
                 gapNew = gap + delta;
 
@@ -108,3 +108,98 @@
         return parseInt(this.css(property), 10) || 0;
     };
 })(window, jQuery);
+
+/******************** angular ********************/
+(function(window, angular, $) {
+    /******************** modules ********************/
+    var app = angular.module('app', [
+        'ngResource'
+    ]);
+
+    /******************** controllers ********************/
+    app.controller('TimelineController', ['$scope', 'Timeline', function($scope, Timeline) {
+        /******************** private variables ********************/
+        var dates = {};
+
+        /******************** model ********************/
+        $scope.dates = [];
+
+        $scope.isDateActive = function(date) {
+            var dateIndex = date.dateIndex,
+                now = new Date(),
+                dateIndexNow = [now.getFullYear(), now.getMonth() + 1, now.getDate()].join('-');
+
+            return dateIndex >= dateIndexNow;
+        };
+
+        $scope.isTitleRowShown = function(item) {
+            return item.image === undefined;
+        };
+
+        $scope.isImageRowShown = function(item) {
+            return item.image !== undefined;
+        };
+
+        // Todo: this function is not completely correct
+        $scope.getDateTitle = function(date) {
+            var dateInt = parseInt(date.dateString),
+                now = new Date(),
+                dateIntNow = parseInt([now.getFullYear(), now.getMonth() + 1, now.getDate()].join(''));
+
+            return dateIntNow === dateInt ? 'Today'
+                : (dateIntNow === dateInt + 1 ? 'Yesterday'
+                : (dateIntNow === dateInt - 1 ? 'Tomorrow' : date.dateIndex));
+        };
+
+        /******************** event handlers ********************/
+        Timeline.query(function(items) {
+            angular.forEach(items, function(item) {
+                var itemDate = item.date,
+                    dateLocale = 'en-us',
+                    dateIndex = [itemDate.year, itemDate.month, itemDate.day].join('-'),
+                    dateString = [itemDate.year, itemDate.month, itemDate.day].join(''),
+                    date = new Date(itemDate.year, itemDate.month - 1, itemDate.day, itemDate.hours, itemDate.minutes, itemDate.seconds || 0, itemDate.milliseconds || 0);
+
+                item.date.timestamp = date.getTime();
+                item.date.dayName = getDayName(date.getDay());
+                item.date.monthName = date.toLocaleString(dateLocale, {
+                    month: 'long'
+                });
+
+                if (dateIndex in dates) {
+                    dates[dateIndex].items.push(item);
+                } else {
+                    dates[dateIndex] = {
+                        dateIndex: dateIndex,
+                        dateString: dateString,
+                        items: [item]
+                    };
+                }
+            });
+
+            angular.forEach(dates, function(date) {
+                $scope.dates.push(date);
+            });
+        });
+    }]);
+
+    /******************** services ********************/
+    app.factory('Timeline', ['$resource', '$q', function($resource) {
+        return $resource('model/timeline.json');
+    }]);
+
+    /******************** private functions ********************/
+    function getDayName(dayNumber) {
+        var dayMap = {
+            0: 'Sunday',
+            1: 'Monday',
+            2: 'Tuesday',
+            3: 'Wednesday',
+            4: 'Thursday',
+            5: 'Friday',
+            6: 'Saturday'
+        };
+
+        return dayMap[dayNumber];
+    }
+})(window, angular, jQuery);
