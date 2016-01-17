@@ -14,7 +14,7 @@
     <script src="assets/scripts/dist/shared-top.js"></script>
     <![endif]-->
 </head>
-<body ng-app="app">
+<body ng-app="app" ng-controller="TimelineController">
     <main class="ch-main">
         <header class="ch-header">
             <div class="ch-header__container">
@@ -60,15 +60,14 @@
                             <button class="ch-header__bottom-action-button" disabled><i class="fa fa-user"></i><span>O. Prime</span></button>
                         </div>
                         <div class="ch-header__bottom-action ch-util__flex-item_grow-1">
-                            <button class="ch-header__bottom-action-button"><i class="fa fa-plus"></i><span>Add Task</span></button>
+                            <button id="add-task-trigger" class="ch-header__bottom-action-button"><i class="fa fa-plus"></i><span>Add Task</span></button>
                         </div>
                     </div>
                 </div>
             </div>
         </header>
         <section class="ch-content">
-            <div id="timeline-container" class="ch-timeline-container"
-                    ng-controller="TimelineController">
+            <div id="timeline-container" class="ch-timeline-container">
                 <div id="timeline" class="ch-timeline">
                     <div class="ch-timeline__day"
                             ng-repeat="date in dates | orderBy:'dateString':true"
@@ -130,6 +129,58 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
+        <section id="task-form" class="ch-task-form">
+            <div class="ch-task-form__title">
+                <h3>Add a Task</h3>
+            </div>
+            <hr class="ch-task-form__divider">
+            <div class="ch-form-container">
+                <form class="ch-form">
+                    <div class="ch-form__row">
+                        <div class="ch-form__field">
+                            <label for="task-field-year" class="ch-form__label">Year</label>
+                            <input type="text" id="task-field-year" class="ch-form__input" name="year" value="2016  (read only)" readonly>
+                        </div>
+                        <div class="ch-form__field">
+                            <label for="task-field-month" class="ch-form__label">Month</label>
+                            <input type="text" id="task-field-month" class="ch-form__input" name="month" value="1  (read only)" readonly>
+                        </div>
+                        <div class="ch-form__field">
+                            <label for="task-field-day" class="ch-form__label">Day</label>
+                            <select id="task-field-day" class="ch-form__input" name="day">
+                                <option value="dayOption"
+                                        ng-repeat="dayOption in getDayOptions()"
+                                        ng-bind="dayOption"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="ch-form__row">
+                        <div class="ch-form__field">
+                            <label for="task-field-type" class="ch-form__label">Type</label>
+                            <select id="task-field-type" class="ch-form__input" name="type">
+                                <option value="Appointment">Appointment</option>
+                                <option value="Meeting">Meeting</option>
+                            </select>
+                        </div>
+                        <div class="ch-form__field">
+                            <label for="task-field-title" class="ch-form__label">Title</label>
+                            <input type="text" id="task-field-title" class="ch-form__input" name="title">
+                        </div>
+                    </div>
+                    <div class="ch-form__row">
+                        <div class="ch-form__field">
+                            <label for="task-field-description" class="ch-form__label">Description</label>
+                            <textarea id="task-field-description" class="ch-form__input_textarea" name="description" readonly>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum maiores ratione tempora? Asperiores beatae dicta ducimus eos error eum impedit minima minus nemo nobis numquam obcaecati, omnis quae, quibusdam repellat (read only)</textarea>
+                        </div>
+                    </div>
+                    <hr class="ch-task-form__divider">
+                    <div class="ch-form__row_buttons">
+                        <button id="task-form-submit-button">Submit</button>
+                        <button id="task-form-close-button">Close</button>
+                    </div>
+                </form>
             </div>
         </section>
     </main>

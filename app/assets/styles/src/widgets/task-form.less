@@ -1,0 +1,109 @@
+.ch-task-form {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0 @ch-util__mardding_large;
+  padding: 0 @ch-util__mardding_large @ch-util__mardding_large;
+  width: ~'calc(100% - @{ch-util__mardding_large} * 2)';
+  border-radius: 0 0 @ch-util__border-radius_large @ch-util__border-radius_large;
+  background: @ch-util__color_gray-lightest;
+  box-shadow: @ch-util__box-shadow_strong;
+  z-index: @ch-util__z-index_higher;
+}
+
+.ch-task-form__title {
+  margin: @ch-util__mardding_large 0;
+  text-align: center;
+
+  h3 {
+    color: @ch-util__color_gray-darker;
+    font-size: @ch-util__font-size_30;
+  }
+}
+
+.ch-task-form__divider {
+  margin: @ch-util__mardding_large 0;
+  border: @ch__border_form-input;
+}
+
+.ch-form-container {
+
+}
+
+.ch-form {
+
+}
+
+.ch-form__row {
+  .ch-util__flex-container;
+
+  margin: @ch-util__mardding_large 0 0;
+
+  .ch-form__field {
+    .ch-util__flex-item_grow-1;
+  }
+}
+
+.ch-form__row_buttons {
+  .ch-form__row;
+  .ch-util__clearfix;
+
+  display: block;
+  margin: 0 !important;
+
+  button {
+    .ch-form__input;
+
+    float: right;
+    width: inherit;
+    border: none;
+    box-shadow: @ch-util__box-shadow_light;
+
+    &:last-of-type {
+      margin: 0 @ch-util__mardding_small 0 0;
+    }
+
+    &#task-form-submit-button {
+      color: @ch-util__color_white;
+      background: @ch-util__color_green;
+      font-weight: @ch-util__font-weight_boldest;
+    }
+  }
+}
+
+.ch-form__label {
+  display: block;
+  margin: 0 0 @ch-util__mardding_smaller;
+  width: 100%;
+  height: @ch__height_form-row_label;
+  line-height: @ch__height_form-row_label;
+  color: @ch-util__color_gray-dark;
+  font-size: @ch-util__font-size_16;
+}
+
+.ch-form__input {
+  display: block;
+  padding: 0 @ch-util__mardding_large;
+  width: 100%;
+  height: @ch__height_form-row_input;
+  line-height: @ch__height_form-row_input;
+  border: @ch__border_form-input;
+  border-radius: @ch-util__border-radius_small;
+  background: @ch-util__color_white;
+  font-size: @ch-util__font-size_16;
+  outline: none;
+
+  &:read-only {
+    color: @ch-util__color_gray-darker;
+  }
+}
+
+.ch-form__input_textarea {
+  .ch-form__input;
+
+  padding: @ch-util__mardding_small @ch-util__mardding_large;
+  height: 180px;
+  line-height: 24px;
+  resize: none;
+}

@@ -19,6 +19,12 @@
                 max: 300
             };
 
+        // for task form
+        var _$taskFromTrigger = $('#add-task-trigger'),
+            _$taskForm = $('#task-form'),
+            _$taskFromSubmit = $('#task-form-submit-button'),
+            _$taskFormClose = $('#task-form-close-button');
+
         /******************** timeline | drag ********************/
         _$timeline.on('mousedown', function(e) {
             // primary button only
@@ -64,6 +70,15 @@
 
             // ensure the timeline doesn't go beyond its container when the height changes
             _adjustTimelinePosition();
+        });
+
+        /******************** task form ********************/
+        _$taskFromTrigger.click(function() {
+            _$taskForm.slideDown(200);
+        });
+
+        _$taskFormClose.click(function() {
+            _$taskForm.slideUp(200);
         });
 
         /******************** private functions ********************/
@@ -140,7 +155,7 @@
             return item.image !== undefined;
         };
 
-        // Todo: this function is not completely correct
+        // todo: this function is not completely correct
         $scope.getDateTitle = function(date) {
             var dateInt = parseInt(date.dateString),
                 now = new Date(),
@@ -149,6 +164,17 @@
             return dateIntNow === dateInt ? 'Today'
                 : (dateIntNow === dateInt + 1 ? 'Yesterday'
                 : (dateIntNow === dateInt - 1 ? 'Tomorrow' : date.dateIndex));
+        };
+
+        // todo: just a mockup for now
+        $scope.getDayOptions = function() {
+            var dayOptions = [];
+
+            for (var i = 1; i <= 31; i++) {
+                dayOptions.push(i);
+            }
+
+            return dayOptions;
         };
 
         /******************** event handlers ********************/
