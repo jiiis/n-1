@@ -1,8 +1,14 @@
-.ch-timeline {
-  overflow-y: auto;
+.ch-timeline-container {
+  overflow-y: hidden;
   height: 100%;
+}
+
+.ch-timeline {
+  .ch-util__cursor_move;
 
   &__day {
+    .ch-util__clearfix;
+
     &.ch-util__active {
       .ch-timeline__day-title-text {
         background: @ch-util__color_blue;
