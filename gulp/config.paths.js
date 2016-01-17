@@ -38,6 +38,7 @@ module.exports = {
                     files: [
                         path.join(dirVendors, 'bower', 'jquery', 'dist', 'jquery.js'),
                         path.join(dirVendors, 'bower', 'jquery-mousewheel', 'jquery.mousewheel.js'),
+                        path.join(dirVendors, 'bower', 'angular', 'angular.js'),
                         path.join(dirScripts, 'src', 'app.js')
                     ]
                 }

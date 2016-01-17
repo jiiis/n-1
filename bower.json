@@ -24,6 +24,7 @@
     "respond": "~1.4.2",
     "selectivizr": "~1.0.2",
     "roboto-fontface": "~0.4.3",
-    "jquery-mousewheel": "~3.1.13"
+    "jquery-mousewheel": "~3.1.13",
+    "angular": "~1.4.8"
   }
 }
