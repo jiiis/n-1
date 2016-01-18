@@ -293,6 +293,8 @@
         }
 
         function _updateDatesModel() {
+            $scope.dates = [];
+
             angular.forEach(_dates, function(date) {
                 $scope.dates.push(date);
             });
