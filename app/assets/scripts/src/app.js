@@ -128,9 +128,36 @@
         $scope.isDateActive = function(date) {
             var dateIndex = date.dateIndex,
                 now = new Date(),
-                dateIndexNow = [now.getFullYear(), now.getMonth() + 1, now.getDate()].join('-');
+                dateIndexNow = [now.getFullYear(), _getNormalizedTimeNumber(now.getMonth() + 1), _getNormalizedTimeNumber(now.getDate())].join('-');
 
             return dateIndex >= dateIndexNow;
+        };
+
+        // todo: optimize
+        $scope.isTaskInverted = function(item, isParentEven, isEven) {
+            var itemDate = item.date,
+                dateIndex = [itemDate.year, _getNormalizedTimeNumber(itemDate.month), _getNormalizedTimeNumber(itemDate.day)].join('-'),
+                indexPrev = -1;
+
+            for (var i = 0; i < $scope.dates.length; i++) {
+                if (dateIndex === $scope.dates[i].dateIndex) {
+                    break;
+                }
+
+                indexPrev++;
+            }
+
+            if (indexPrev === -1) {
+                return isParentEven !== isEven;
+            }
+
+            var taskCountPrev = $scope.dates[indexPrev].items.length;
+
+            if (!!(taskCountPrev % 2) === !!(indexPrev % 2)) {
+                return isParentEven === isEven;
+            }
+
+            return isParentEven !== isEven;
         };
 
         $scope.isTitleRowShown = function(item) {
@@ -149,7 +176,7 @@
         $scope.getDateTitle = function(date) {
             var dateInt = parseInt(date.dateString),
                 now = new Date(),
-                dateIntNow = parseInt([now.getFullYear(), now.getMonth() + 1, now.getDate()].join(''));
+                dateIntNow = parseInt([now.getFullYear(), _getNormalizedTimeNumber(now.getMonth() + 1), _getNormalizedTimeNumber(now.getDate())].join(''));
 
             return dateIntNow === dateInt ? 'Today'
                 : (dateIntNow === dateInt + 1 ? 'Yesterday'
@@ -265,6 +292,15 @@
             angular.forEach(_dates, function(date) {
                 $scope.dates.push(date);
             });
+
+            _sortDatesModel();
+        }
+
+        function _sortDatesModel() {
+            $scope.dates.sort(function(a, b) {
+                return a.dateIndex === b.dateIndex ? 0 : +(a.dateIndex > b.dateIndex) || -1;
+            });
+            $scope.dates.reverse();
         }
 
         function _getNormalizedTask(item) {
