@@ -20,8 +20,10 @@
             <div class="ch-header__container">
                 <div class="ch-header__top">
                     <p class="ch-header__title">Hao CHANG</p>
+
                     <div class="ch-header__top-left">
                         <p class="ch-header__top-left-row">#9121411</p>
+
                         <p class="ch-header__top-left-row">By Roland Smith</p>
                     </div>
                     <div class="ch-header__top-right">
@@ -54,10 +56,12 @@
                     </div>
                     <div class="ch-header__bottom-actions">
                         <div class="ch-header__bottom-action ch-util__flex-item_grow-2">
-                            <button class="ch-header__bottom-action-button" disabled><i class="fa fa-tachometer"></i><span>Next Step: Apt with O. Prime</span></button>
+                            <button class="ch-header__bottom-action-button" disabled><i
+                                    class="fa fa-tachometer"></i><span>Next Step: Apt with H. Chang</span></button>
                         </div>
                         <div class="ch-header__bottom-action ch-util__flex-item_grow-1">
-                            <button class="ch-header__bottom-action-button" disabled><i class="fa fa-user"></i><span>O. Prime</span></button>
+                            <button class="ch-header__bottom-action-button" disabled><i class="fa fa-user"></i><span>H. Chang</span>
+                            </button>
                         </div>
                         <div class="ch-header__bottom-action ch-util__flex-item_grow-1">
                             <button class="ch-header__bottom-action-button"
@@ -71,51 +75,61 @@
             <div id="timeline-container" class="ch-timeline-container">
                 <div id="timeline" class="ch-timeline">
                     <div class="ch-timeline__day"
-                            ng-repeat="date in dates | orderBy:'dateString':true track by $index"
-                            ng-class="{'ch-util__active': isDateActive(date)}">
+                         ng-repeat="date in dates | orderBy:'dateString':true track by $index"
+                         ng-class="{'ch-util__active': isDateActive(date)}">
                         <div class="ch-timeline__day-title">
                             <span class="ch-timeline__day-title-text"
-                                    ng-bind="getDateTitle(date)"></span>
+                                  ng-bind="getDateTitle(date)"></span>
                         </div>
                         <div class="ch-timeline__day-block">
                             <ul class="ch-timeline__list">
                                 <li ng-repeat="item in date.items | orderBy:'date.timestamp':true track by $index"
-                                        ng-class="isTaskInverted(item, $parent.$even, $even) ? 'ch-timeline__item_inverted' : 'ch-timeline__item'">
+                                    ng-class="isTaskInverted(item, $parent.$even, $even) ? 'ch-timeline__item_inverted' : 'ch-timeline__item'">
                                     <div class="ch-timeline__item-point"></div>
                                     <div class="ch-timeline__item-title">
-                                        <p class="ch-timeline__item-title-row-1"><span class="ch-timeline__item-title-icon"><i class="fa fa-calendar"></i></span><span class="ch-timeline__item-title-text"
+                                        <p class="ch-timeline__item-title-row-1"><span
+                                                class="ch-timeline__item-title-icon"><i
+                                                class="fa fa-calendar"></i></span><span
+                                                class="ch-timeline__item-title-text"
                                                 ng-bind="item.type"></span></p>
+
                                         <p class="ch-timeline__item-title-row-2"
-                                                ng-bind="item.date.hours + ':' + item.date.minutes"></p>
+                                           ng-bind="item.date.hours + ':' + item.date.minutes"></p>
                                     </div>
                                     <div class="ch-timeline__item-panel">
                                         <div class="ch-timeline__item-panel-container">
                                             <div class="ch-timeline__item-panel-row">
                                                 <div class="ch-timeline__item-date-left"
-                                                        ng-bind="item.date.day"></div>
+                                                     ng-bind="item.date.day"></div>
                                                 <div class="ch-timeline__item-date-right">
                                                     <p class="ch-timeline__item-day"
-                                                            ng-bind="item.date.dayName"></p>
+                                                       ng-bind="item.date.dayName"></p>
+
                                                     <p ng-bind="item.date.monthName + ' ' + item.date.year"></p>
                                                 </div>
                                             </div>
                                             <div class="ch-timeline__item-panel-row"
-                                                    ng-if="isTitleRowShown(item)">
-                                                <div class="ch-timeline__item-panel-icon"><i class="fa fa-info-circle"></i></div>
+                                                 ng-if="isTitleRowShown(item)">
+                                                <div class="ch-timeline__item-panel-icon"><i
+                                                        class="fa fa-info-circle"></i></div>
                                                 <div class="ch-timeline__item-panel-title"
-                                                        ng-bind="item.title"></div>
+                                                     ng-bind="item.title"></div>
                                             </div>
                                             <div class="ch-timeline__item-panel-row"
-                                                    ng-if="isImageRowShown(item)">
-                                                <div class="ch-timeline__item-panel-image"><img ng-src="assets/images/{{ item.image }}"></div>
+                                                 ng-if="isImageRowShown(item)">
+                                                <div class="ch-timeline__item-panel-image"><img
+                                                        ng-src="assets/images/{{ item.image }}"></div>
                                                 <div class="ch-timeline__item-panel-person">
                                                     <h3>O. Prime</h3>
-                                                    <p><a href="mailto:oprime@noggin.com">oprime@noggin.com</a></p>
-                                                    <p>+61 402 124 818</p>
+
+                                                    <p><a href="mailto:abc@abc.com">abc@abc.com</a></p>
+
+                                                    <p>+61 402 223 344</p>
                                                 </div>
                                             </div>
                                             <div class="ch-timeline__item-panel-row">
-                                                <div class="ch-timeline__item-panel-icon"><i class="fa fa-pencil"></i></div>
+                                                <div class="ch-timeline__item-panel-icon"><i class="fa fa-pencil"></i>
+                                                </div>
                                                 <div class="ch-timeline__item-panel-text">
                                                     <p ng-bind="item.description"></p>
                                                 </div>
@@ -143,7 +157,7 @@
                         <div class="ch-form__field">
                             <label for="task-field-year" class="ch-form__label">Year</label>
                             <input type="text" id="task-field-year" class="ch-form__input" name="year" readonly
-                                    ng-model="taskYear">
+                                   ng-model="taskYear">
                         </div>
                         <div class="ch-form__field">
                             <label for="task-field-month" class="ch-form__label">Month</label>
@@ -183,7 +197,8 @@
                             </select>
                         </div>
                         <div class="ch-form__field">
-                            <label for="task-field-title" class="ch-form__label">Title (required and shorter than 12)</label>
+                            <label for="task-field-title" class="ch-form__label">Title (required and shorter than
+                                12)</label>
                             <input type="text" id="task-field-title" class="ch-form__input" name="title"
                                    ng-model="taskTitle"
                                    ng-required="true"
@@ -193,7 +208,8 @@
                     <div class="ch-form__row">
                         <div class="ch-form__field">
                             <label for="task-field-description" class="ch-form__label">Description</label>
-                            <textarea id="task-field-description" class="ch-form__input_textarea" name="description" readonly
+                            <textarea id="task-field-description" class="ch-form__input_textarea" name="description"
+                                      readonly
                                       ng-model="taskDescription"></textarea>
                         </div>
                     </div>
@@ -201,9 +217,11 @@
                     <div class="ch-form__row_buttons">
                         <button class="ch-button_submit"
                                 ng-click="addTask()"
-                                ng-disabled="isSubmitButtonDisabled()">Submit</button>
+                                ng-disabled="isSubmitButtonDisabled()">Submit
+                        </button>
                         <button type="submit"
-                                ng-click="closeTaskForm()">Close</button>
+                                ng-click="closeTaskForm()">Close
+                        </button>
                     </div>
                 </form>
             </div>

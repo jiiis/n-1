@@ -29,7 +29,7 @@
     "date": {
       "year": 2016,
       "month": 1,
-      "day": 17,
+      "day": 18,
       "hours": 19,
       "minutes": 15
     },
@@ -50,7 +50,7 @@
     "type": "meeting",
     "title": "Meeting 2",
     "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias asperiores cupiditate fugiat fugit magni nihil possimus voluptas voluptate? Aliquam animi architecto aut consequuntur distinctio dolorum eos, iste! Delectus excepturi, possimus!",
-    "author": "Owen Prime",
+    "author": "Will Smith",
     "image": "t2.png"
   },
   {
@@ -64,7 +64,7 @@
     "type": "meeting",
     "title": "Meeting 6",
     "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias asperiores cupiditate fugiat fugit magni nihil possimus voluptas voluptate? Aliquam animi architecto aut consequuntur distinctio dolorum eos, iste! Delectus excepturi, possimus!",
-    "author": "Owen Prime",
+    "author": "Helena Duan",
     "image": "t2.png"
   },
   {

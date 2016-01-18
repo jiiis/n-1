@@ -1,145 +1,147 @@
 .ch-header {
-  &__container {
-    border: @ch__border_base;
-    border-radius: @ch-util__border-radius_large;
+
+}
+
+.ch-header__container {
+  border: @ch__border_base;
+  border-radius: @ch-util__border-radius_large;
+}
+
+.ch-header__top {
+  position: relative;
+  padding: 0 @ch-util__mardding_small;
+  height: @ch__height_header-top;
+  line-height: @ch__height_header-top;
+  background: @ch-util__color_gray-lighter;
+
+  &-left, &-right {
+    position: absolute;
+    top: 0;
+    padding: @ch-util__mardding_smaller 0;
+    height: 100%;
   }
 
-  &__top {
+  &-left {
+    color: @ch-util__color_gray-darker;
+    font-weight: @ch-util__font-weight_bolder;
+
+    &-row {
+      height: @ch__height_header-top / 2 - @ch-util__mardding_smaller;
+      line-height: @ch__height_header-top / 2 - @ch-util__mardding_smaller;
+    }
+  }
+
+  &-right {
+    .ch-util__flex-container;
+
+    right: @ch-util__mardding_small;
+
+    .ch-header__top-right-icon {
+      .ch-util__flex-item;
+
+      margin-left: 0;
+      height: @ch__height_header-top - @ch-util__mardding_smaller * 2;
+      line-height: @ch__height_header-top - @ch-util__mardding_smaller * 2;
+      font-size: @ch-util__font-size_30;
+
+      .fa {
+        .ch-util__cursor_pointer;
+
+        line-height: inherit;
+
+        &.fa-check-circle {
+          color: @ch-util__color_green;
+        }
+
+        &.fa-times-circle {
+          color: @ch-util__color_navy;
+        }
+      }
+    }
+
+    .ch-header__top-right-icon_first {
+      .ch-header__top-right-icon;
+    }
+  }
+}
+
+.ch-header__title {
+  .ch-util__block_text-center;
+
+  color: @ch-util__color_red;
+  font-size: 24px;
+  font-weight: @ch-util__font-weight_boldest;
+}
+
+.ch-header__bottom {
+  padding: @ch-util__mardding_larger;
+  border-top: @ch__border_base;
+  background: @ch-util__color_white;
+}
+
+.ch-header__bottom-menu {
+  .ch-util__flex-container(@ch-util__mardding_larger);
+
+  color: @ch-util__color_gray;
+  font-weight: @ch-util__font-weight_boldest;
+
+  &-item {
+    .ch-util__flex-item_grow-1;
+
+    &-icon {
+      font-size: @ch-util__font-size_30;
+    }
+
+    &-count {
+      margin: 0 0 0 @ch-util__mardding_small;
+      font-size: @ch-util__font-size_30;
+    }
+
+    &-text {
+      margin: 0 0 0 @ch-util__mardding_smaller;
+      font-size: @ch-util__font-size_18;
+    }
+  }
+}
+
+.ch-header__bottom-actions {
+  .ch-util__flex-container;
+
+  margin: @ch-util__mardding_large 0 0;
+}
+
+.ch-header__bottom-action {
+  overflow: visible !important;
+
+  &-button {
     position: relative;
-    padding: 0 @ch-util__mardding_small;
-    height: @ch__height_header-top;
-    line-height: @ch__height_header-top;
-    background: @ch-util__color_gray-lighter;
-
-    &-left, &-right {
-      position: absolute;
-      top: 0;
-      padding: @ch-util__mardding_smaller 0;
-      height: 100%;
-    }
-
-    &-left {
-      color: @ch-util__color_gray-darker;
-      font-weight: @ch-util__font-weight_bolder;
-
-      &-row {
-        height: @ch__height_header-top / 2 - @ch-util__mardding_smaller;
-        line-height: @ch__height_header-top / 2 - @ch-util__mardding_smaller;
-      }
-    }
-
-    &-right {
-      .ch-util__flex-container;
-
-      right: @ch-util__mardding_small;
-
-      .ch-header__top-right-icon {
-        .ch-util__flex-item;
-
-        margin-left: 0;
-        height: @ch__height_header-top - @ch-util__mardding_smaller * 2;
-        line-height: @ch__height_header-top - @ch-util__mardding_smaller * 2;
-        font-size: @ch-util__font-size_30;
-
-        .fa {
-          .ch-util__cursor_pointer;
-
-          line-height: inherit;
-
-          &.fa-check-circle {
-            color: @ch-util__color_green;
-          }
-
-          &.fa-times-circle {
-            color: @ch-util__color_navy;
-          }
-        }
-      }
-
-      .ch-header__top-right-icon_first {
-        .ch-header__top-right-icon;
-      }
-    }
-  }
-
-  &__title {
-    .ch-util__block_text-center;
-
-    color: @ch-util__color_red;
-    font-size: 24px;
+    width: 100%;
+    height: @ch__height_header-action;
+    line-height: @ch__height_header-action;
+    border: none;
+    border-radius: @ch-util__border-radius_small;
+    color: @ch-util__color_white;
+    background: @ch-util__color_blue;
+    font-size: @ch-util__font-size_16;
     font-weight: @ch-util__font-weight_boldest;
-  }
+    box-shadow: @ch-util__box-shadow_light;
 
-  &__bottom {
-    padding: @ch-util__mardding_larger;
-    border-top: @ch__border_base;
-    background: @ch-util__color_white;
-
-    &-menu {
-      .ch-util__flex-container(@ch-util__mardding_larger);
-
-      color: @ch-util__color_gray;
-      font-weight: @ch-util__font-weight_boldest;
-
-      &-item {
-        .ch-util__flex-item_grow-1;
-
-        &-icon {
-          font-size: @ch-util__font-size_30;
-        }
-
-        &-count {
-          margin: 0 0 0 @ch-util__mardding_small;
-          font-size: @ch-util__font-size_30;
-        }
-
-        &-text {
-          margin: 0 0 0 @ch-util__mardding_smaller;
-          font-size: @ch-util__font-size_18;
-        }
-      }
+    &:disabled {
+      background: @ch-util__color_gray;
+      box-shadow: none;
     }
 
-    &-actions {
-      .ch-util__flex-container;
-
-      margin: @ch-util__mardding_large 0 0;
+    .fa {
+      position: absolute;
+      left: @ch-util__mardding_small;
+      line-height: inherit;
+      font-size: @ch-util__font-size_30;
     }
 
-    &-action {
-      overflow: visible !important;
-
-      &-button {
-        position: relative;
-        width: 100%;
-        height: @ch__height_header-action;
-        line-height: @ch__height_header-action;
-        border: none;
-        border-radius: @ch-util__border-radius_small;
-        color: @ch-util__color_white;
-        background: @ch-util__color_blue;
-        font-size: @ch-util__font-size_16;
-        font-weight: @ch-util__font-weight_boldest;
-        box-shadow: @ch-util__box-shadow_light;
-
-        &:disabled {
-          background: @ch-util__color_gray;
-          box-shadow: none;
-        }
-
-        .fa {
-          position: absolute;
-          left: @ch-util__mardding_small;
-          line-height: inherit;
-          font-size: @ch-util__font-size_30;
-        }
-
-        & > span {
-          display: inline-block;
-          margin: 0 0 0 @ch__height_header-action;
-          width: ~'calc(100% - @{ch__height_header-action})';
-        }
-      }
+    & > span {
+      display: inline-block;
+      margin: 0 0 0 @ch__height_header-action;
+      width: ~'calc(100% - @{ch__height_header-action})';
     }
   }
 }
