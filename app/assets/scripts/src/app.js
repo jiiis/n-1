@@ -52,7 +52,7 @@
             var _$timelineItem = $('.ch-timeline__item, .ch-timeline__item_inverted'),
                 delta = e.deltaY,
                 gap = _$timelineItem.cssInt(_gapProperty),
-                gapNew = gap + delta;
+                gapNew = gap - delta;
 
             // zoom within the range
             if (gapNew < _gapRange.min || gapNew > _gapRange.max) {
