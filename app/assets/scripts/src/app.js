@@ -165,7 +165,7 @@
 
             for (var i = start; i <= volume; i++) {
                 options.push({
-                    name: i < 10 ? '0' + i : '' + i,
+                    name: _getNormalizedTimeNumber(i),
                     value: i
                 });
             }
@@ -183,6 +183,7 @@
             }];
         };
 
+        // todo: the year and month are restricted to 2016 and 1 for now
         $scope.taskYear = 2016;
         $scope.taskMonth = 1;
         $scope.taskDay = $scope.getTimeOptions('day')[26];
@@ -199,9 +200,7 @@
                     month: $scope.taskMonth,
                     day: $scope.taskDay.value,
                     hours: $scope.taskHours.value,
-                    minutes: $scope.taskMinutes.value,
-                    seconds: 0,
-                    milliseconds: 0
+                    minutes: $scope.taskMinutes.value
                 },
                 type: $scope.taskType.value,
                 title: $scope.taskTitle,
@@ -236,9 +235,10 @@
         /******************** private functions ********************/
         function _addTask(item) {
             var itemDate = item.date,
-                dateIndex = [itemDate.year, itemDate.month, itemDate.day].join('-'),
-                dateString = [itemDate.year, itemDate.month, itemDate.day].join(''),
-
+                month = _getNormalizedTimeNumber(itemDate.month),
+                day = _getNormalizedTimeNumber(itemDate.day),
+                dateIndex = [itemDate.year, month, day].join('-'),
+                dateString = [itemDate.year, month, day].join(''),
                 item = _getNormalizedTask(item);
 
             if (dateIndex in _dates) {
@@ -261,7 +261,7 @@
         function _getNormalizedTask(item) {
             var itemDate = item.date,
                 dateLocale = 'en-us',
-                date = new Date(itemDate.year, itemDate.month - 1, itemDate.day, itemDate.hours, itemDate.minutes, itemDate.seconds || 0, itemDate.milliseconds || 0);
+                date = new Date(itemDate.year, itemDate.month - 1, itemDate.day, itemDate.hours, itemDate.minutes);
 
             item.date.timestamp = date.getTime();
             item.date.dayName = _getDayName(date.getDay());
@@ -270,6 +270,12 @@
             });
 
             return item;
+        }
+
+        function _getNormalizedTimeNumber(timeNumber) {
+            timeNumber = parseInt(timeNumber);
+
+            return timeNumber < 10 ? '0' + timeNumber : '' + timeNumber;
         }
 
         function _getDayName(dayNumber) {

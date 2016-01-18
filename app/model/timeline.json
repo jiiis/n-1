@@ -5,9 +5,7 @@
       "month": 1,
       "day": 19,
       "hours": 13,
-      "minutes": 0,
-      "seconds": 0,
-      "milliseconds": 0
+      "minutes": 0
     },
     "type": "appointment",
     "title": "Appointment 2",
@@ -20,9 +18,7 @@
       "month": 1,
       "day": 17,
       "hours": 18,
-      "minutes": 30,
-      "seconds": 0,
-      "milliseconds": 0
+      "minutes": 30
     },
     "type": "appointment",
     "title": "Appointment 1",
@@ -35,9 +31,7 @@
       "month": 1,
       "day": 17,
       "hours": 19,
-      "minutes": 15,
-      "seconds": 0,
-      "milliseconds": 0
+      "minutes": 15
     },
     "type": "meeting",
     "title": "Meeting 1",
@@ -51,9 +45,7 @@
       "month": 1,
       "day": 18,
       "hours": 10,
-      "minutes": 45,
-      "seconds": 0,
-      "milliseconds": 0
+      "minutes": 45
     },
     "type": "meeting",
     "title": "Meeting 2",
@@ -67,9 +59,7 @@
       "month": 1,
       "day": 20,
       "hours": 9,
-      "minutes": 40,
-      "seconds": 0,
-      "milliseconds": 0
+      "minutes": 40
     },
     "type": "meeting",
     "title": "Meeting 6",
@@ -83,9 +73,7 @@
       "month": 1,
       "day": 16,
       "hours": 20,
-      "minutes": 0,
-      "seconds": 0,
-      "milliseconds": 0
+      "minutes": 0
     },
     "type": "meeting",
     "title": "Meeting 3",
@@ -98,9 +86,7 @@
       "month": 1,
       "day": 17,
       "hours": 14,
-      "minutes": 5,
-      "seconds": 0,
-      "milliseconds": 0
+      "minutes": 5
     },
     "type": "meeting",
     "title": "Meeting 3",
@@ -113,9 +99,7 @@
       "month": 1,
       "day": 14,
       "hours": 12,
-      "minutes": 55,
-      "seconds": 0,
-      "milliseconds": 0
+      "minutes": 55
     },
     "type": "appointment",
     "title": "Appointment 6",
@@ -128,9 +112,7 @@
       "month": 1,
       "day": 16,
       "hours": 10,
-      "minutes": 35,
-      "seconds": 0,
-      "milliseconds": 0
+      "minutes": 35
     },
     "type": "appointment",
     "title": "Appointment 3",
@@ -143,9 +125,7 @@
       "month": 1,
       "day": 20,
       "hours": 11,
-      "minutes": 25,
-      "seconds": 0,
-      "milliseconds": 0
+      "minutes": 25
     },
     "type": "appointment",
     "title": "Appointment 4",
