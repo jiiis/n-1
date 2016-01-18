@@ -197,31 +197,27 @@
                             </select>
                         </div>
                         <div class="ch-form__field">
-                            <label for="task-field-title" class="ch-form__label">Title (required and shorter than
-                                12)</label>
+                            <label for="task-field-title" class="ch-form__label">Title (required and between 3 and 12 inclusive)</label>
                             <input type="text" id="task-field-title" class="ch-form__input" name="title"
                                    ng-model="taskTitle"
                                    ng-required="true"
+                                   ng-minlength="3"
                                    ng-maxlength="12">
                         </div>
                     </div>
                     <div class="ch-form__row">
                         <div class="ch-form__field">
                             <label for="task-field-description" class="ch-form__label">Description</label>
-                            <textarea id="task-field-description" class="ch-form__input_textarea" name="description"
-                                      readonly
+                            <textarea id="task-field-description" class="ch-form__input_textarea" name="description" readonly
                                       ng-model="taskDescription"></textarea>
                         </div>
                     </div>
                     <hr class="ch-task-form__divider">
                     <div class="ch-form__row_buttons">
                         <button class="ch-button_submit"
-                                ng-click="addTask()"
-                                ng-disabled="isSubmitButtonDisabled()">Submit
-                        </button>
+                                ng-click="addTask()">Submit</button>
                         <button type="submit"
-                                ng-click="closeTaskForm()">Close
-                        </button>
+                                ng-click="closeTaskForm()">Close</button>
                     </div>
                 </form>
             </div>

@@ -133,7 +133,7 @@
             return dateIndex >= dateIndexNow;
         };
 
-        // todo: optimize
+        // @todo: optimize
         $scope.isTaskInverted = function(item, isParentEven, isEven) {
             var itemDate = item.date,
                 dateIndex = [itemDate.year, _getNormalizedTimeNumber(itemDate.month), _getNormalizedTimeNumber(itemDate.day)].join('-'),
@@ -168,11 +168,12 @@
             return item.image !== undefined;
         };
 
+        // @deprecated
         $scope.isSubmitButtonDisabled = function() {
             return !$scope.taskForm.$valid;
         };
 
-        // todo: this function is not completely correct
+        // @todo: this function is not completely correct
         $scope.getDateTitle = function(date) {
             var dateInt = parseInt(date.dateString),
                 now = new Date(),
@@ -187,7 +188,7 @@
             return _getNormalizedTimeNumber(task.date.hours) + ':' + _getNormalizedTimeNumber(task.date.minutes);
         };
 
-        // todo: just a mockup for now
+        // @todo: just a mockup for now
         $scope.getTimeOptions = function(domain) {
             var options = [],
                 start = domain === 'day' ? 1 : 0,
@@ -215,6 +216,12 @@
         };
 
         $scope.addTask = function() {
+            if (!$scope.taskForm.$valid) {
+                $scope.taskForm.title.$setDirty();
+
+                return;
+            }
+
             var task = {
                 date: {
                     year: $scope.taskYear,
@@ -241,9 +248,9 @@
         };
 
         $scope.closeTaskForm = function() {
-            _initTaskModel();
-
             _$taskForm.slideUp(200);
+
+            _initTaskModel();
         };
 
         _initTaskModel();
@@ -259,7 +266,7 @@
 
         /******************** private functions ********************/
         function _initTaskModel() {
-            // todo: the year and month are restricted to 2016 and 1 for now
+            // @todo: the year and month are restricted to 2016 and 1 for now
             $scope.taskYear = 2016;
             $scope.taskMonth = 1;
             $scope.taskDay = $scope.getTimeOptions('day')[26];
@@ -269,8 +276,8 @@
             $scope.taskTitle = '';
             $scope.taskDescription = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum maiores ratione tempora? Asperiores beatae dicta ducimus eos error eum impedit minima minus nemo nobis numquam obcaecati, omnis quae, quibusdam repellat.';
 
-            // set form controller untouched to remove validation errors
-            $scope.taskForm === undefined || $scope.taskForm.$setUntouched();
+            // set form controller pristine to remove validation errors
+            $scope.taskForm === undefined || $scope.taskForm.$setPristine()();
         }
 
         function _addTask(item) {
