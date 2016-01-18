@@ -1,12 +1,16 @@
 'use strict';
 
 var path = require('path'),
-    dirAssets = path.join(__dirname, '../app/assets'),
+    dirApp = path.join(__dirname, '../app'),
+    dirAssets = path.join(dirApp, 'assets'),
     dirStyles = path.join(dirAssets, 'styles'),
     dirScripts = path.join(dirAssets, 'scripts'),
     dirVendors = path.join(dirAssets, 'vendors');
 
 module.exports = {
+    app: {
+        dir: dirApp
+    },
     assets: {
         dir: dirAssets
     },
