@@ -183,6 +183,10 @@
                 : (dateIntNow === dateInt - 1 ? 'Tomorrow' : date.dateIndex));
         };
 
+        $scope.getTimeName = function(task) {
+            return _getNormalizedTimeNumber(task.date.hours) + ':' + _getNormalizedTimeNumber(task.date.minutes);
+        };
+
         // todo: just a mockup for now
         $scope.getTimeOptions = function(domain) {
             var options = [],
