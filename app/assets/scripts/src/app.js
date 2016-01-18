@@ -183,16 +183,6 @@
             }];
         };
 
-        // todo: the year and month are restricted to 2016 and 1 for now
-        $scope.taskYear = 2016;
-        $scope.taskMonth = 1;
-        $scope.taskDay = $scope.getTimeOptions('day')[26];
-        $scope.taskHours = $scope.getTimeOptions('hours')[11];
-        $scope.taskMinutes = $scope.getTimeOptions('minutes')[30];
-        $scope.taskType = $scope.getTaskTypeOptions()[0];
-        $scope.taskTitle = '';
-        $scope.taskDescription = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum maiores ratione tempora? Asperiores beatae dicta ducimus eos error eum impedit minima minus nemo nobis numquam obcaecati, omnis quae, quibusdam repellat.';
-
         $scope.addTask = function() {
             var task = {
                 date: {
@@ -210,7 +200,7 @@
 
             _addTask(task);
 
-            _updateTaskModel();
+            _updateDatesModel();
 
             $scope.closeTaskForm();
         };
@@ -220,8 +210,12 @@
         };
 
         $scope.closeTaskForm = function() {
+            _initTaskModel();
+
             _$taskForm.slideUp(200);
         };
+
+        _initTaskModel();
 
         /******************** event handlers ********************/
         Timeline.query(function(items) {
@@ -229,10 +223,25 @@
                 _addTask(item);
             });
 
-            _updateTaskModel();
+            _updateDatesModel();
         });
 
         /******************** private functions ********************/
+        function _initTaskModel() {
+            // todo: the year and month are restricted to 2016 and 1 for now
+            $scope.taskYear = 2016;
+            $scope.taskMonth = 1;
+            $scope.taskDay = $scope.getTimeOptions('day')[26];
+            $scope.taskHours = $scope.getTimeOptions('hours')[11];
+            $scope.taskMinutes = $scope.getTimeOptions('minutes')[30];
+            $scope.taskType = $scope.getTaskTypeOptions()[0];
+            $scope.taskTitle = '';
+            $scope.taskDescription = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum maiores ratione tempora? Asperiores beatae dicta ducimus eos error eum impedit minima minus nemo nobis numquam obcaecati, omnis quae, quibusdam repellat.';
+
+            // set form controller untouched to remove validation errors
+            $scope.taskForm === undefined || $scope.taskForm.$setUntouched();
+        }
+
         function _addTask(item) {
             var itemDate = item.date,
                 month = _getNormalizedTimeNumber(itemDate.month),
@@ -252,7 +261,7 @@
             }
         }
 
-        function _updateTaskModel() {
+        function _updateDatesModel() {
             angular.forEach(_dates, function(date) {
                 $scope.dates.push(date);
             });
